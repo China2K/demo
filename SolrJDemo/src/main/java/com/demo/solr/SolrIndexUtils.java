@@ -26,7 +26,7 @@ public class SolrIndexUtils {
 		int size = records.size();
 		for (int i = 0; i < size; i++) {
 			SolrInputDocument item = new SolrInputDocument();
-			Product record = records.get(i);
+			Product record = records.get(i); 
 			logger.info("Start adding solr index for " + record.toString());
 			item.addField(ISolrFields.ID, record.getId());
 			item.addField(ISolrFields.DESCRIPTION,record.getDescription());
