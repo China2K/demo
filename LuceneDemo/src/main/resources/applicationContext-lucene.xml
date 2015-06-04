@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	   <property name="locations">
+	    <list>
+	     <value>classpath:lucene.properties</value>
+	    </list>
+	   </property>
+	</bean>
+	
+	<bean id="configurationLoader" class="com.demo.test.config.ConfigurationLoader" init-method="initialize">
+		<property name="productConf">
+				<ref bean="configBean_product" />
+		</property>
+	</bean>
+	
+	<bean id="configBean_product" class="com.demo.test.config.ConfigBean">
+		<property name="indexName" value="${product.indexName}" />
+		<property name="storePath" value="${product.indexPath}" />
+		<property name="tempPath" value="${product.tempPath}" />
+		<property name="everyPage" value="${product.everyPage}" />
+		<property name="key">
+			<bean class="com.demo.test.config.ConfigBean.Field">
+				<property name="name"><value>id</value></property>
+				<property name="stored"><value>true</value></property>
+				<property name="indexOption"><value>1</value></property>
+				<property name="tokenized"><value>false</value></property>
+			</bean>
+		</property>
+		<property name="fields">
+			<list>
+				<bean class="com.demo.test.config.ConfigBean.Field">
+					<property name="name"><value>name</value></property>
+					<property name="stored"><value>true</value></property>
+					<property name="indexOption"><value>1</value></property>
+					<property name="tokenized"><value>false</value></property>
+				</bean> 
+				<bean class="com.demo.test.config.ConfigBean.Field">
+					<property name="name"><value>keywords</value></property>
+					<property name="stored"><value>true</value></property>
+					<property name="indexOption"><value>1</value></property>
+					<property name="tokenized"><value>true</value></property>
+				</bean>
+				<bean class="com.demo.test.config.ConfigBean.Field">
+					<property name="name"><value>sn</value></property>
+					<property name="stored"><value>true</value></property>
+					<property name="indexOption"><value>1</value></property>
+					<property name="tokenized"><value>true</value></property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
