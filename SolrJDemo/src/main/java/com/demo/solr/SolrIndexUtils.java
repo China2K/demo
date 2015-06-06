@@ -7,20 +7,19 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.CloudSolrClient;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.common.SolrInputDocument;
 
 import com.demo.solr.config.ISolrFields;
 import com.demo.solr.model.Product;
 
 public class SolrIndexUtils {
-	private Logger logger = Logger.getLogger(SolrIndexUtils.class);
+	private static  Logger logger = Logger.getLogger(SolrIndexUtils.class);
 
-	private final CloudSolrClient solrClient = CloudSolrClientFactory
-			.getInstance().getCloudSolrClient();
+	private final static HttpSolrClient solrClient = SolrClientFactory
+			.getInstance().getSolrClient();
 
-
-	public void addIndexs( List<Product> records) throws SolrServerException, IOException {
+	public static void addIndexs( List<Product> records) throws SolrServerException, IOException {
 		int count = 0;
 		Collection<SolrInputDocument> docs = new ArrayList<SolrInputDocument>();
 		int size = records.size();

@@ -1,6 +1,7 @@
 package com.demo.solr;
 
 import org.apache.solr.client.solrj.impl.CloudSolrClient;
+import org.apache.solr.client.solrj.impl.HttpSolrServer;
 
 import com.demo.solr.config.SolrConfig;
 
@@ -16,7 +17,6 @@ public class CloudSolrClientFactory {
 	}
 
 	public synchronized CloudSolrClient getCloudSolrClient() {
-
 		if (cloudSolrClient == null) {
 			cloudSolrClient = new CloudSolrClient(zkHost);
 			cloudSolrClient.setDefaultCollection(defaultCollection);

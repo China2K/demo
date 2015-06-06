@@ -18,6 +18,16 @@ public class SolrConfig {
 	public static int zkClientTimeout;
 
 	public static String defaultCollection;
+	
+	public static String solrHost;
+
+	public static int solrConnectTimeout;
+
+	public static int solrClientTimeout;
+	
+	public static int maxConnectionsPerHost;
+	
+	public static int maxTotalConnection;
 
 	static {
 		InputStream is = SolrConfig.class
@@ -43,6 +53,32 @@ public class SolrConfig {
 			}
 			defaultCollection = properties
 					.getProperty("solr.default.collection");
+			
+			
+			
+			solrHost = properties.getProperty("solr.host");
+			String solrClientTimeoutStr = properties
+					.getProperty("solr.client.timeout");
+			if (StringUtils.isNotEmpty(solrClientTimeoutStr)) {
+				solrClientTimeout = Integer.parseInt(solrClientTimeoutStr);
+			}
+			String solrConnectTimeoutStr = properties
+					.getProperty("solr.connect.timeout");
+			if (StringUtils.isNotEmpty(solrConnectTimeoutStr)) {
+				solrConnectTimeout = Integer.parseInt(solrConnectTimeoutStr);
+			}
+			
+			String maxConnectionsPerHostStr = properties
+					.getProperty("max.connections.perhost");
+			if (StringUtils.isNotEmpty(maxConnectionsPerHostStr)) {
+				maxConnectionsPerHost = Integer.parseInt(maxConnectionsPerHostStr);
+			}
+			
+			String maxTotalConnectionStr = properties
+					.getProperty("max.total.connection");
+			if (StringUtils.isNotEmpty(maxTotalConnectionStr)) {
+				maxTotalConnection = Integer.parseInt(maxTotalConnectionStr);
+			}
 
 		}
 	}

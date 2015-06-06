@@ -1,14 +1,19 @@
 package com.demo.solr.model;
 
-import java.util.Date;
+import org.apache.solr.client.solrj.beans.Field;
+
 
 public class Product {
+	@Field
 	private String id;
+	@Field
 	private String name;
+	@Field
 	private String keywords;
+	@Field
 	private String description;
+	@Field
 	private String sn;
-	private Date updatedTime;
 
 	public Product() {
 		super();
@@ -62,14 +67,6 @@ public class Product {
 
 	public void setSn(String sn) {
 		this.sn = sn;
-	}
-
-	public Date getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(Date updatedTime) {
-		this.updatedTime = updatedTime;
 	}
 
 }
