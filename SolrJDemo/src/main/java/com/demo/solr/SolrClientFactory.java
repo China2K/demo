@@ -7,7 +7,7 @@ import com.demo.solr.config.SolrConfig;
 public class SolrClientFactory {
 	private static HttpSolrClient solrClient = null;
 	private static SolrClientFactory solrClientFactory = null;
-	private static String solrHost = SolrConfig.zkHost;
+	private static String solrHost = SolrConfig.solrHost;
 	private static int solrClientTimeout = SolrConfig.solrClientTimeout;
 	private static int solrConnectTimeout = SolrConfig.solrConnectTimeout;
 	private static int maxConnectionsPerHost = SolrConfig.maxConnectionsPerHost;
