@@ -21,7 +21,7 @@ public class Startup {
 
 	public static void main(String[] args) throws IOException, ParseException, SolrServerException {
 		System.out.println(new Date());
-		testInsert();
+		testSearch();
 		System.out.println(new Date());
 	}
 
@@ -34,7 +34,7 @@ public class Startup {
 		 File dataFile=new File("E://data.txt");
 		 FileWriter fileWriter=new FileWriter(dataFile);  
 		 BufferedWriter bw=new BufferedWriter(fileWriter);  
-		for(int i=0;i<2;i++){
+		for(int i=0;i<100;i++){
 			String id=UUID.randomUUID().toString();
 			String name="test"+i+ran.nextInt(5000);
 			String sn="sn-"+333;
@@ -55,5 +55,14 @@ public class Startup {
 		System.out.println(products.size());
 		
 		SolrIndexUtils.addIndexs(products);
+	}
+	
+	
+	public static void testSearch() throws SolrServerException, IOException{
+		List<Product> search = SolrQueryUtils.search("test2833", null, null, null, 0, 20);
+		for (Product product : search) {
+			
+			System.out.println(product.getId()+"||||||"+product.getName());
+		}
 	}
 }
