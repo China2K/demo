@@ -3,7 +3,7 @@ package com.demo.solr.model;
 import org.apache.solr.client.solrj.beans.Field;
 
 
-public class Product {
+public class Product extends SolrBean{
 	@Field
 	private String id;
 	@Field

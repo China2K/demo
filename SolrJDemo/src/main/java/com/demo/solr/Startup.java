@@ -58,11 +58,19 @@ public class Startup {
 	}
 	
 	
+	
+	public static void testUpdate() throws IOException, SolrServerException{
+		List<Product> products =new ArrayList<Product>();
+		products.add(new Product("ebca8db8-4c38-4f16-84cc-3a7a3b5de849", "test2833", "999999", "9999", "9999999"));
+		SolrIndexUtils.addIndexs(products);
+	
+	}
+	
 	public static void testSearch() throws SolrServerException, IOException{
 		List<Product> search = SolrQueryUtils.search("test2833", null, null, null, 0, 20);
 		for (Product product : search) {
 			
-			System.out.println(product.getId()+"||||||"+product.getName());
+			System.out.println(product.getId()+"||||||"+product.getName()+product.getDescription()+"---"+product.getKeywords());
 		}
 	}
 }
